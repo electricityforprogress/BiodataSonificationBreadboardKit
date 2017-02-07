@@ -1,6 +1,6 @@
 
 /*------------
-MIDI_PsychoGalvanometer v021
+MIDI_PsychoGalvanometer v026
 Accepts pulse inputs from a Galvanic Conductance sensor 
 consisting of a 555 timer set as an astablemultivibrator and two electrodes. 
 Through sampling pulse widths and identifying fluctuations, MIDI note and control messages 
@@ -37,7 +37,7 @@ const byte buttonPin = A1; //tact button input
 int menus = 5; //number of main menus
 int mode = 0; //0 = Threshold, 1 = Scale, 2 = Brightness
 int currMenu = 0;
-
+int pulseRate = 350; //base pulse rate
 
 const byte samplesize = 10; //set sample array size
 const byte analysize = samplesize - 1;  //trim for analysis array
@@ -361,11 +361,11 @@ void checkMenu(){
             break;
           case 1: //this is the main selection menu
             noteLEDs = 0;
-            pulse(value,maxBrightness,250); //pulse for current menu
+            pulse(value,maxBrightness,pulseRate); //pulse for current menu
             break;
           case 2:  //this is the submenu
             noteLEDs = 0;
-            pulse(value,maxBrightness,90); //pulse for current menu        
+            pulse(value,maxBrightness,(pulseRate/2)); //pulse for current menu        
             break;
         
           default:
@@ -466,7 +466,7 @@ void thresholdMode() {
     threshold = analogRead(knobPin);  
     //set threshold to knobValue mapping
     threshold = mapfloat(threshold, knobMin, knobMax, threshMin, threshMax);
-    pulse(value,maxBrightness,90); //pulse for current menu    
+    pulse(value,maxBrightness,(pulseRate/2)); //pulse for current menu    
     
     checkLED();
     if(index >= samplesize)  { analyzeSample(); }  //keep samples running
@@ -493,8 +493,8 @@ void scaleMode() {
     //set current Scale choice
     currScale = map(currScale, knobMin, knobMax, 0, scaleCount);
     
-    pulse(value,maxBrightness,150); //pulse for current menu    
-    pulse(currScale,maxBrightness,90); //display selected scale if scaleCount <= 5
+    pulse(value,maxBrightness,(pulseRate/2)); //pulse for current menu    
+    pulse(currScale,maxBrightness,(pulseRate/4)); //display selected scale if scaleCount <= 5
 
     if(currScale != prevScale) { //clear last value if change
       leds[prevScale].stop_fade();
@@ -528,7 +528,7 @@ void channelMode() {
     //set current MIDI Channel between 1 and 16
     channel = map(channel, knobMin, knobMax, 1, 17);
     
-    pulse(value,maxBrightness,90); //pulse for current menu    
+    pulse(value,maxBrightness,(pulseRate/4)); //pulse for current menu    
     
     checkLED();
     if(index >= samplesize)  { analyzeSample(); }  //keep samples running
@@ -553,8 +553,8 @@ void brightnessMode() {
     //set led maxBrightness
     maxBrightness = map(maxBrightness, knobMin, knobMax, 1, 255);
 
-    if(maxBrightness>1) pulse(value,maxBrightness,90); //pulse for current menu    
-    else pulse(value,1,50); //fast dim pulse for 0 note lightshow
+    if(maxBrightness>1) pulse(value,maxBrightness,(pulseRate/2)); //pulse for current menu    
+    else pulse(value,1,(pulseRate/6)); //fast dim pulse for 0 note lightshow
     
     checkLED();
     if(index >= samplesize)  { analyzeSample(); }  //keep samples running
