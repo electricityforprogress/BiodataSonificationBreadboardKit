@@ -598,7 +598,7 @@ void analyzeSample()
   unsigned long delta = 0;
   byte change = 0;
 
-  if (index = samplesize) { //array is full
+  if (index == samplesize) { //array is full
     unsigned long sampanalysis[analysize];
     for (byte i=0; i<analysize; i++){ 
       //skip first element in the array
