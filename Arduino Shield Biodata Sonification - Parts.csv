@@ -10,7 +10,7 @@ C1,Capacitor 4700pF,0.27,1,0.27,5mm,4700pF,KEMET,C315C472K1R5TA,,
 C2,Electrolytic Cap 47uF,0.17,1,0.17,12.5mm,47uF,KEMET,ESH476M025AC3AA,,
 C3 ,Electrolytic Cap 1uF,0.17,1,0.17,12.5mm,1uF,KEMET,ESH105M050AC3AA,,CV to Audio (Jumper)
 "C4, R11",Capacitor 0.1uF,0.22,2,0.44,5mm,0.1uF,KEMET,C320C104K5R5TA,,CV to Audio
-555,555 Timer IC,0.8,1,0.8,,555,Texas Instruments,LM555CN/NOPB,,
+555,555 Timer IC,0.8,1,0.8,,555,Texas Instruments,LMC555,,https://www.jameco.com/z/LMC555CN-Major-Brands-IC-LMC555CN-CMOS-Single-555-Timer-Low-Power-DIP-8_126797.html
 555,8 Pin Socket,0.16,1,0.16,,,Assmann WSW,A 08-LC-TT,,
 "X1,X2",3.5mm Stereo Jack,0.74,2,1.48,3.5mm,STEREOJACK,CUI Inc,SJ1-3523N,,
 MIDI,MIDI 5 pin DIN,1.02,1,1.02,DIN-5,MIDIJACK,CUI Inc,SDS-50J,,
