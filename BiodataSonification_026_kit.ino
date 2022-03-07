@@ -629,7 +629,7 @@ void analyzeSample()
        
        //set scaling, root key, note
        int setnote = map(averg%127,1,127,noteMin,noteMax);  //derive note, min and max note
-       setnote = scaleNote(setnote, *scale[currScale], root);  //scale the note
+       setnote = scaleNote(setnote, scale[currScale], root);  //scale the note
        // setnote = setnote + root; // (apply root?)
        if(QY8) { setNote(setnote, 100, dur, notechannel); } //set for QY8 mode
        else { setNote(setnote, 100, dur, channel); }
